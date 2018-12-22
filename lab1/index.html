@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Round-Robin Scheduling Algorithm Visualizer</title>
+  <script src="./helper.js"></script>
+  <script src="./main.js"></script>
+  <link href="./style.css" rel="stylesheet" />
+</head>
+<body>
+  <h1>Round-Robin Scheduling Algorithm Visualizer</h1>
+  <div id="div_up">
+    <span id="span_rList"></span>
+    <span id="span_eList"></span>
+  </div>
+  <div id="div_bottom">
+    <span class="span_functions" id="span_bottom_left">
+      <h2>Add Process</h2>
+      <p>Process Name: <input id="input_pname" type="text" /></p>
+      <p>Time Needed: <input id="input_timeNeeded" type="text" /></p>
+      <p><button type="button" onclick="but_add()">Confirm</button></p>
+    </span>
+    <span class="span_functions" id="span_bottom_right">
+      <h2>Run Process</h2>
+      <p>Run for every second!</p>
+      <p><button type="button" onclick="but_run()">Confirm</button></p>
+    </span>
+    <span class="span_functions" id="span_bottom_middle">
+      <h2>Kill Process</h2>
+      Process ID: <input id="input_pid" type="text" />
+      <p><button type="button" onclick="but_kill()">Confirm</button></p>
+    </span>
+  </div>
+</body>
+</html>
