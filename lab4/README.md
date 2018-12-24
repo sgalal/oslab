@@ -2,5 +2,5 @@
 
 ``` sh
 $ bower install
-$ pulp build --modules Banker --skip-entry-point -O --to banker.js
+$ pulp build --skip-entry-point --no-check-main -O --to banker.js
 ```
