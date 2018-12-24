@@ -10,11 +10,9 @@
     "purescript-prelude": "^4.1.0",
     "purescript-console": "^4.2.0",
     "purescript-effect": "^2.0.0",
-    "purescript-strings": "^4.0.1",
-    "purescript-tuples": "purescript/purescript-tuples#^5.1.0",
-    "purescript-lists": "^5.3.0",
+    "purescript-tuples": "^5.1.0",
     "purescript-smolder": "^11.0.1",
-    "purescript-foldable-traversable": "^4.1.1"
+    "purescript-lists": "^5.3.0"
   },
   "devDependencies": {
     "purescript-psci-support": "^4.0.0"
