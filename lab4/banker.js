@@ -3495,6 +3495,11 @@ var PS = {};
   var Data_Tuple = PS["Data.Tuple"];
   var Data_Unit = PS["Data.Unit"];
   var Prelude = PS["Prelude"];
+  var uncurry3 = function (f) {
+      return function (v) {
+          return f(v.value0)(v.value1.value0)(v.value1.value1.value0);
+      };
+  };
   var tuple4 = function (a) {
       return function (b) {
           return function (c) {
@@ -3504,7 +3509,26 @@ var PS = {};
           };
       };
   };
+  var over3 = function (o) {
+      return function (v) {
+          return new Data_Tuple.Tuple(v.value0, new Data_Tuple.Tuple(v.value1.value0, new Data_Tuple.Tuple(o(v.value1.value1.value0), v.value1.value1.value1)));
+      };
+  };
+  var over2 = function (o) {
+      return function (v) {
+          return new Data_Tuple.Tuple(v.value0, new Data_Tuple.Tuple(o(v.value1.value0), v.value1.value1));
+      };
+  };
+  var over1 = function (o) {
+      return function (v) {
+          return new Data_Tuple.Tuple(o(v.value0), v.value1);
+      };
+  };
   exports["tuple4"] = tuple4;
+  exports["over1"] = over1;
+  exports["over2"] = over2;
+  exports["over3"] = over3;
+  exports["uncurry3"] = uncurry3;
 })(PS["Data.Tuple.Nested"] = PS["Data.Tuple.Nested"] || {});
 (function(exports) {
   /* globals exports, JSON */
@@ -3981,13 +4005,13 @@ var PS = {};
   var Text_Smolder_HTML_Attributes = PS["Text.Smolder.HTML.Attributes"];
   var Text_Smolder_Markup = PS["Text.Smolder.Markup"];
   var Text_Smolder_Renderer_String = PS["Text.Smolder.Renderer.String"];                 
-  var readIntVec = function ($45) {
-      return Data_List.fromFoldable(Data_Foldable.foldableArray)(Data_Functor.map(Data_Functor.functorArray)(function ($46) {
-          return Data_Maybe.fromMaybe(0)(Data_Int.fromString($46));
-      })(Data_String_Common.split(" ")($45)));
+  var readIntVec = function ($21) {
+      return Data_List.fromFoldable(Data_Foldable.foldableArray)(Data_Functor.map(Data_Functor.functorArray)(function ($22) {
+          return Data_Maybe.fromMaybe(0)(Data_Int.fromString($22));
+      })(Data_String_Common.split(" ")($21)));
   };
-  var readIntMat = function ($47) {
-      return Data_List.fromFoldable(Data_Foldable.foldableArray)(Data_Functor.map(Data_Functor.functorArray)(readIntVec)(Data_String_Common.split("\x0a")($47)));
+  var readIntMat = function ($23) {
+      return Data_List.fromFoldable(Data_Foldable.foldableArray)(Data_Functor.map(Data_Functor.functorArray)(readIntVec)(Data_String_Common.split("\x0a")($23)));
   };
   var printVec = function (xs) {
       return "[" + (Data_Foldable.intercalate(Data_List_Types.foldableList)(Data_Monoid.monoidString)(" ")(Data_Functor.map(Data_List_Types.functorList)(Data_Show.show(Data_Show.showInt))(xs)) + "]");
@@ -4016,15 +4040,15 @@ var PS = {};
                   if (canAlloc) {
                       var availV$prime = Data_List.zipWith(Data_Semiring.add(Data_Semiring.semiringInt))(v.value0)(v2);
                       return Control_Bind.discard(Control_Bind.discardUnit)(Control_Monad_Free.freeBind)(Text_Smolder_HTML.table(Control_Apply.applySecond(Control_Monad_Free.freeApply)(m)(Text_Smolder_HTML.tr(Text_Smolder_Markup["with"](Text_Smolder_Markup.attributableMarkupF)(Text_Smolder_HTML.td)(Text_Smolder_HTML_Attributes.colspan("2"))(Text_Smolder_Markup["with"](Text_Smolder_Markup.attributableMarkupF)(Text_Smolder_HTML.span)(Text_Smolder_HTML_Attributes.className("alloc"))(Text_Smolder_Markup.text("Can allocate.")))))))(function () {
-                          return Control_Bind.bind(Control_Monad_Free.freeBind)(handleProc(v.value1)(v1.value1)(availV$prime))(function (v3) {
-                              return Control_Applicative.pure(Control_Monad_Free.freeApplicative)(Data_Tuple_Nested.tuple4(true)(v3.value1.value0)(v3.value1.value1.value0)(v3.value1.value1.value1.value0));
-                          });
+                          return Data_Functor.map(Control_Monad_Free.freeFunctor)(function (res) {
+                              return Data_Tuple_Nested.over1(Data_Function["const"](true))(res);
+                          })(handleProc(v.value1)(v1.value1)(availV$prime));
                       });
                   };
                   return Control_Bind.discard(Control_Bind.discardUnit)(Control_Monad_Free.freeBind)(Text_Smolder_HTML.table(Control_Apply.applySecond(Control_Monad_Free.freeApply)(m)(Text_Smolder_HTML.tr(Text_Smolder_Markup["with"](Text_Smolder_Markup.attributableMarkupF)(Text_Smolder_HTML.td)(Text_Smolder_HTML_Attributes.colspan("2"))(Text_Smolder_Markup["with"](Text_Smolder_Markup.attributableMarkupF)(Text_Smolder_HTML.span)(Text_Smolder_HTML_Attributes.className("unalloc"))(Text_Smolder_Markup.text("Cannot allocate.")))))))(function () {
-                      return Control_Bind.bind(Control_Monad_Free.freeBind)(handleProc(v.value1)(v1.value1)(v2))(function (v3) {
-                          return Control_Applicative.pure(Control_Monad_Free.freeApplicative)(Data_Tuple_Nested.tuple4(v3.value0)(new Data_List_Types.Cons(v.value0, v3.value1.value0))(new Data_List_Types.Cons(v1.value0, v3.value1.value1.value0))(v3.value1.value1.value1.value0));
-                      });
+                      return Data_Functor.map(Control_Monad_Free.freeFunctor)(function (res) {
+                          return Data_Tuple_Nested.over2(Data_List_Types.Cons.create(v.value0))(Data_Tuple_Nested.over3(Data_List_Types.Cons.create(v1.value0))(res));
+                      })(handleProc(v.value1)(v1.value1)(v2));
                   });
               };
               return Control_Applicative.pure(Control_Monad_Free.freeApplicative)(Data_Tuple_Nested.tuple4(false)(Data_List_Types.Nil.value)(Data_List_Types.Nil.value)(v2));
@@ -4038,7 +4062,7 @@ var PS = {};
                   return Control_Bind.bind(Control_Monad_Free.freeBind)(handleProc(allocM)(maxiM)(availV))(function (v) {
                       var v1 = Data_List["null"](v.value1.value0);
                       if (v.value0 && !v1) {
-                          return handleConstr(v.value1.value0)(v.value1.value1.value0)(v.value1.value1.value1.value0);
+                          return Data_Tuple_Nested.uncurry3(handleConstr)(v.value1);
                       };
                       if (!v.value0) {
                           return Text_Smolder_HTML.h2(Text_Smolder_Markup.text("Not safe."));
@@ -4046,7 +4070,7 @@ var PS = {};
                       if (v.value0 && v1) {
                           return Text_Smolder_HTML.h2(Text_Smolder_Markup.text("Safe."));
                       };
-                      throw new Error("Failed pattern match at Main line 57, column 3 - line 62, column 1: " + [ v.value0.constructor.name, v1.constructor.name ]);
+                      throw new Error("Failed pattern match at Main line 55, column 3 - line 60, column 1: " + [ v.value0.constructor.name, v1.constructor.name ]);
                   });
               });
           };

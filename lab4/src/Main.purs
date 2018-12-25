@@ -5,8 +5,8 @@ import Data.Int (fromString)
 import Data.List (List(..), all, fromFoldable, intercalate, null, zipWith)
 import Data.Maybe (fromMaybe)
 import Data.String as S
-import Data.Tuple.Nested (Tuple4, tuple4, (/\))
-import Prelude (bind, discard, map, pure, show, ($), (*>), (+), (-), (<<<), (<>), (>=))
+import Data.Tuple.Nested
+import Prelude (bind, const, discard, map, pure, show, ($), (*>), (+), (-), (<<<), (<>), (>=))
 import Text.Smolder.HTML (h2, span, table, td, tr)
 import Text.Smolder.HTML.Attributes (className, colspan)
 import Text.Smolder.Markup (Markup, MarkupM, text, (!))
@@ -42,20 +42,18 @@ handleProc (Cons allocV allocM) (Cons maxiV maxiM) availV =
     then do
       let availV' = zipWith (+) allocV availV
       table $ m *> (tr $ td ! colspan "2" $ span ! className "alloc" $ text "Can allocate.")
-      _ /\ allocM' /\ maxiM' /\ availV'' /\ _ <- handleProc allocM maxiM availV'
-      pure $ tuple4 true allocM' maxiM' availV''
+      map (\res -> const true `over1` res) $ handleProc allocM maxiM availV'
     else do
       table $ m *> (tr $ td ! colspan "2" $ span ! className "unalloc" $ text "Cannot allocate.")
-      isSafe /\ allocM' /\ maxiM' /\ availV' /\ _ <- handleProc allocM maxiM availV
-      pure $ tuple4 isSafe (Cons allocV allocM') (Cons maxiV maxiM') availV'
+      map (\res -> Cons allocV `over2` (Cons maxiV `over3` res)) $ handleProc allocM maxiM availV
 handleProc _ _ x = pure $ tuple4 false Nil Nil x
 
 handleConstr :: forall e. IntMat -> IntMat -> IntVec -> Markup e
 handleConstr allocM maxiM availV = do
   h2 $ text $ "Checking for " <> printMat allocM
-  isSafe /\ allocM' /\ maxiM' /\ availV' /\ _ <- handleProc allocM maxiM availV
+  isSafe /\ res@(allocM' /\ _) <- handleProc allocM maxiM availV
   case isSafe, null allocM' of
-    true , false -> handleConstr allocM' maxiM' availV'
+    true , false -> uncurry3 handleConstr res
     false, _     -> h2 $ text "Not safe."
     true , true  -> h2 $ text "Safe."
 
