@@ -7,9 +7,7 @@
   <script src="banker.js"></script>
   <link href="banker.css" rel="stylesheet" />
 <script>
-function submit() {
-  document.getElementById("result").innerHTML = PS.Main.solve(document.getElementById("textarea_allocM").value)(document.getElementById("textarea_maxiM").value)(document.getElementById("textarea_availV").value);
-}
+function submit() { document.getElementById("result").innerHTML = PS.Main.solve(document.getElementById("textarea_allocM").value)(document.getElementById("textarea_maxiM").value)(document.getElementById("textarea_availV").value); }
 window.onload = submit;
 </script>
 </head>
@@ -18,17 +16,18 @@ window.onload = submit;
   <div class="content">
     <div>
       <h2>Allocated Matrix</h2>
-      <textarea id="textarea_allocM" onchange="submit()">0 0 1 4&#13;1 4 3 2&#13;1 3 5 4&#13;1 0 0 0</textarea>
+      <textarea id="textarea_allocM">0 0 1 4&#13;1 4 3 2&#13;1 3 5 4&#13;1 0 0 0</textarea>
     </div>
     <div>
       <h2>Maximum Matrix</h2>
-      <textarea id="textarea_maxiM" onchange="submit()">0 6 5 6&#13;1 9 4 2&#13;1 3 5 6&#13;1 7 5 0</textarea>
+      <textarea id="textarea_maxiM">0 6 5 6&#13;1 9 4 2&#13;1 3 5 6&#13;1 7 5 0</textarea>
     </div>
     <div>
       <h2>Available Vector</h2>
-      <textarea id="textarea_availV" onchange="submit()">1 5 2 0</textarea>
+      <textarea id="textarea_availV">1 5 2 0</textarea>
     </div>
   </div>
+  <p><button type="button" onclick="submit()">Submit</button></p>
   <div id="result" />
 </body>
 </html>

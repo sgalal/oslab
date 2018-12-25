@@ -1,5 +1,24 @@
-* {
-	font-family: sans-serif;
+body {
+	background-color: Snow;
+	border: 0.5rem dotted Pink;
+	font-family: sans;
+	margin: 0 auto;
+	padding-bottom: 1rem;
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 1rem;
+}
+
+button {
+	background-color: FloralWhite;
+	border: 0.0625rem solid grey;
+	border-radius: 0.25rem;
+	padding: 0.25rem 0.75rem;
+	transition-duration: 0.4s;
+}
+
+button:hover {
+	background-color: White;
 }
 
 textarea {
@@ -14,8 +33,8 @@ textarea {
 	flex-wrap: wrap;
 }
 
-.content>div {
-	padding: 1em;
+button, .content>div {
+	margin: 0 1rem;
 }
 
 .alloc {

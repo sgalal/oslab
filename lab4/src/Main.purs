@@ -5,7 +5,7 @@ import Data.Int (fromString)
 import Data.List (List(..), all, fromFoldable, intercalate, null, zipWith)
 import Data.Maybe (fromMaybe)
 import Data.String as S
-import Data.Tuple.Nested (Tuple4, (/\))
+import Data.Tuple.Nested (Tuple4, (/\), curry4)
 import Prelude (bind, discard, map, pure, show, unit, ($), (*>), (+), (-), (<<<), (<>), (>=))
 import Text.Smolder.HTML (h2, span, table, td, tr)
 import Text.Smolder.HTML.Attributes (className, colspan)
@@ -28,28 +28,28 @@ readIntMat :: String -> IntMat
 readIntMat = fromFoldable <<< map readIntVec <<< S.split (S.Pattern "\n")
 
 handleProc :: forall e. IntMat -> IntMat -> IntVec -> Free (MarkupM e) (Tuple4 Boolean IntMat IntMat IntVec)
-handleProc Nil Nil x = pure $ false /\ Nil /\ Nil /\ x /\ unit
-handleProc (Cons allocV allocM) (Cons maxiV maxiM) availV = do
+handleProc Nil Nil x = curry4 unit pure false Nil Nil x
+handleProc (Cons allocV allocM) (Cons maxiV maxiM) availV =
   let needV      = zipWith (-) maxiV allocV
       testAllocV = zipWith (-) availV needV
-      canAlloc   = all (\nn -> nn >= 0) testAllocV
-      m = do
+      canAlloc   = all (\n -> n >= 0) testAllocV
+      m          = do
         tr $ (td $ text "Allocated")                            *> (td $ text $ printVec allocV)
         tr $ (td $ text "Maximum")                              *> (td $ text $ printVec maxiV)
         tr $ (td $ text "Needed (= Maximum - Allocated)")       *> (td $ text $ printVec needV)
         tr $ (td $ text "Available")                            *> (td $ text $ printVec availV)
         tr $ (td $ text "Test Allocate (= Available - Needed)") *> (td $ text $ printVec testAllocV)
-  if canAlloc
+  in if canAlloc
     then do
       let availV' = zipWith (+) allocV availV
       table $ m *> (tr $ td ! colspan "2" $ span ! className "alloc" $ text "Can allocate.")
       _ /\ a /\ b /\ c /\ _ <- handleProc allocM maxiM availV'
-      pure $ true /\ a /\ b /\ c /\ unit
+      curry4 unit pure true a b c
     else do
       table $ m *> (tr $ td ! colspan "2" $ span ! className "unalloc" $ text "Cannot allocate.")
       isSafe /\ allocM' /\ maxiM' /\ availV' /\ _ <- handleProc allocM maxiM availV
-      pure $ isSafe /\ Cons allocV allocM' /\ Cons maxiV maxiM' /\ availV' /\ unit
-handleProc a b c = pure $ false /\ a /\ b /\ c /\ unit  -- FIXME: should be never reached
+      curry4 unit pure isSafe (Cons allocV allocM') (Cons maxiV maxiM') availV'
+handleProc a b c = curry4 unit pure false a b c  -- FIXME: should be never reached
 
 handleConstr :: forall e. IntMat -> IntMat -> IntVec -> Markup e
 handleConstr allocM maxiM availV = do

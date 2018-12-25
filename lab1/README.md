@@ -34,7 +34,7 @@
 ## Build
 
 ``` bash
-em++ -Wall -Werror -std=c++17 -O --bind -o main.js main.cpp
+$ em++ -Wall -Werror -std=c++17 -O --bind -o main.js src/main.cpp
 ```
 
 ## References

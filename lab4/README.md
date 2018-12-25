@@ -1,4 +1,6 @@
-## build
+# Banker's Algorithm Visualizer
+
+## Build
 
 ``` sh
 $ bower install
