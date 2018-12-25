@@ -5,11 +5,11 @@ import Data.Int (fromString)
 import Data.List (List(..), all, fromFoldable, intercalate, null, zipWith)
 import Data.Maybe (fromMaybe)
 import Data.String as S
-import Data.Tuple.Nested (Tuple4, (/\), curry4)
-import Prelude (bind, discard, map, pure, show, unit, ($), (*>), (+), (-), (<<<), (<>), (>=))
+import Data.Tuple.Nested (Tuple4, tuple4, (/\))
+import Prelude (bind, discard, map, pure, show, ($), (*>), (+), (-), (<<<), (<>), (>=))
 import Text.Smolder.HTML (h2, span, table, td, tr)
 import Text.Smolder.HTML.Attributes (className, colspan)
-import Text.Smolder.Markup (Markup, MarkupM, (!), text)
+import Text.Smolder.Markup (Markup, MarkupM, text, (!))
 import Text.Smolder.Renderer.String (render)
 
 type IntVec = List Int
@@ -28,7 +28,6 @@ readIntMat :: String -> IntMat
 readIntMat = fromFoldable <<< map readIntVec <<< S.split (S.Pattern "\n")
 
 handleProc :: forall e. IntMat -> IntMat -> IntVec -> Free (MarkupM e) (Tuple4 Boolean IntMat IntMat IntVec)
-handleProc Nil Nil x = curry4 unit pure false Nil Nil x
 handleProc (Cons allocV allocM) (Cons maxiV maxiM) availV =
   let needV      = zipWith (-) maxiV allocV
       testAllocV = zipWith (-) availV needV
@@ -43,20 +42,20 @@ handleProc (Cons allocV allocM) (Cons maxiV maxiM) availV =
     then do
       let availV' = zipWith (+) allocV availV
       table $ m *> (tr $ td ! colspan "2" $ span ! className "alloc" $ text "Can allocate.")
-      _ /\ a /\ b /\ c /\ _ <- handleProc allocM maxiM availV'
-      curry4 unit pure true a b c
+      _ /\ allocM' /\ maxiM' /\ availV'' /\ _ <- handleProc allocM maxiM availV'
+      pure $ tuple4 true allocM' maxiM' availV''
     else do
       table $ m *> (tr $ td ! colspan "2" $ span ! className "unalloc" $ text "Cannot allocate.")
       isSafe /\ allocM' /\ maxiM' /\ availV' /\ _ <- handleProc allocM maxiM availV
-      curry4 unit pure isSafe (Cons allocV allocM') (Cons maxiV maxiM') availV'
-handleProc a b c = curry4 unit pure false a b c  -- FIXME: should be never reached
+      pure $ tuple4 isSafe (Cons allocV allocM') (Cons maxiV maxiM') availV'
+handleProc _ _ x = pure $ tuple4 false Nil Nil x
 
 handleConstr :: forall e. IntMat -> IntMat -> IntVec -> Markup e
 handleConstr allocM maxiM availV = do
   h2 $ text $ "Checking for " <> printMat allocM
-  isSafe /\ a /\ b /\ c /\ _ <- handleProc allocM maxiM availV
-  case isSafe, null a of
-    true , false -> handleConstr a b c
+  isSafe /\ allocM' /\ maxiM' /\ availV' /\ _ <- handleProc allocM maxiM availV
+  case isSafe, null allocM' of
+    true , false -> handleConstr allocM' maxiM' availV'
     false, _     -> h2 $ text "Not safe."
     true , true  -> h2 $ text "Safe."
 

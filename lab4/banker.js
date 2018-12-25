@@ -3495,20 +3495,16 @@ var PS = {};
   var Data_Tuple = PS["Data.Tuple"];
   var Data_Unit = PS["Data.Unit"];
   var Prelude = PS["Prelude"];
-  var curry4 = function (z) {
-      return function (f) {
-          return function (a) {
-              return function (b) {
-                  return function (c) {
-                      return function (d) {
-                          return f(new Data_Tuple.Tuple(a, new Data_Tuple.Tuple(b, new Data_Tuple.Tuple(c, new Data_Tuple.Tuple(d, z)))));
-                      };
-                  };
+  var tuple4 = function (a) {
+      return function (b) {
+          return function (c) {
+              return function (d) {
+                  return new Data_Tuple.Tuple(a, new Data_Tuple.Tuple(b, new Data_Tuple.Tuple(c, new Data_Tuple.Tuple(d, Data_Unit.unit))));
               };
           };
       };
   };
-  exports["curry4"] = curry4;
+  exports["tuple4"] = tuple4;
 })(PS["Data.Tuple.Nested"] = PS["Data.Tuple.Nested"] || {});
 (function(exports) {
   /* globals exports, JSON */
@@ -3980,7 +3976,6 @@ var PS = {};
   var Data_String_Pattern = PS["Data.String.Pattern"];
   var Data_Tuple = PS["Data.Tuple"];
   var Data_Tuple_Nested = PS["Data.Tuple.Nested"];
-  var Data_Unit = PS["Data.Unit"];
   var Prelude = PS["Prelude"];
   var Text_Smolder_HTML = PS["Text.Smolder.HTML"];
   var Text_Smolder_HTML_Attributes = PS["Text.Smolder.HTML.Attributes"];
@@ -4003,9 +3998,6 @@ var PS = {};
   var handleProc = function (v) {
       return function (v1) {
           return function (v2) {
-              if (v instanceof Data_List_Types.Nil && v1 instanceof Data_List_Types.Nil) {
-                  return Data_Tuple_Nested.curry4(Data_Unit.unit)(Control_Applicative.pure(Control_Monad_Free.freeApplicative))(false)(Data_List_Types.Nil.value)(Data_List_Types.Nil.value)(v2);
-              };
               if (v instanceof Data_List_Types.Cons && v1 instanceof Data_List_Types.Cons) {
                   var needV = Data_List.zipWith(Data_Ring.sub(Data_Ring.ringInt))(v1.value0)(v.value0);
                   var testAllocV = Data_List.zipWith(Data_Ring.sub(Data_Ring.ringInt))(v2)(needV);
@@ -4025,17 +4017,17 @@ var PS = {};
                       var availV$prime = Data_List.zipWith(Data_Semiring.add(Data_Semiring.semiringInt))(v.value0)(v2);
                       return Control_Bind.discard(Control_Bind.discardUnit)(Control_Monad_Free.freeBind)(Text_Smolder_HTML.table(Control_Apply.applySecond(Control_Monad_Free.freeApply)(m)(Text_Smolder_HTML.tr(Text_Smolder_Markup["with"](Text_Smolder_Markup.attributableMarkupF)(Text_Smolder_HTML.td)(Text_Smolder_HTML_Attributes.colspan("2"))(Text_Smolder_Markup["with"](Text_Smolder_Markup.attributableMarkupF)(Text_Smolder_HTML.span)(Text_Smolder_HTML_Attributes.className("alloc"))(Text_Smolder_Markup.text("Can allocate.")))))))(function () {
                           return Control_Bind.bind(Control_Monad_Free.freeBind)(handleProc(v.value1)(v1.value1)(availV$prime))(function (v3) {
-                              return Data_Tuple_Nested.curry4(Data_Unit.unit)(Control_Applicative.pure(Control_Monad_Free.freeApplicative))(true)(v3.value1.value0)(v3.value1.value1.value0)(v3.value1.value1.value1.value0);
+                              return Control_Applicative.pure(Control_Monad_Free.freeApplicative)(Data_Tuple_Nested.tuple4(true)(v3.value1.value0)(v3.value1.value1.value0)(v3.value1.value1.value1.value0));
                           });
                       });
                   };
                   return Control_Bind.discard(Control_Bind.discardUnit)(Control_Monad_Free.freeBind)(Text_Smolder_HTML.table(Control_Apply.applySecond(Control_Monad_Free.freeApply)(m)(Text_Smolder_HTML.tr(Text_Smolder_Markup["with"](Text_Smolder_Markup.attributableMarkupF)(Text_Smolder_HTML.td)(Text_Smolder_HTML_Attributes.colspan("2"))(Text_Smolder_Markup["with"](Text_Smolder_Markup.attributableMarkupF)(Text_Smolder_HTML.span)(Text_Smolder_HTML_Attributes.className("unalloc"))(Text_Smolder_Markup.text("Cannot allocate.")))))))(function () {
                       return Control_Bind.bind(Control_Monad_Free.freeBind)(handleProc(v.value1)(v1.value1)(v2))(function (v3) {
-                          return Data_Tuple_Nested.curry4(Data_Unit.unit)(Control_Applicative.pure(Control_Monad_Free.freeApplicative))(v3.value0)(new Data_List_Types.Cons(v.value0, v3.value1.value0))(new Data_List_Types.Cons(v1.value0, v3.value1.value1.value0))(v3.value1.value1.value1.value0);
+                          return Control_Applicative.pure(Control_Monad_Free.freeApplicative)(Data_Tuple_Nested.tuple4(v3.value0)(new Data_List_Types.Cons(v.value0, v3.value1.value0))(new Data_List_Types.Cons(v1.value0, v3.value1.value1.value0))(v3.value1.value1.value1.value0));
                       });
                   });
               };
-              return Data_Tuple_Nested.curry4(Data_Unit.unit)(Control_Applicative.pure(Control_Monad_Free.freeApplicative))(false)(v)(v1)(v2);
+              return Control_Applicative.pure(Control_Monad_Free.freeApplicative)(Data_Tuple_Nested.tuple4(false)(Data_List_Types.Nil.value)(Data_List_Types.Nil.value)(v2));
           };
       };
   };
@@ -4054,7 +4046,7 @@ var PS = {};
                       if (v.value0 && v1) {
                           return Text_Smolder_HTML.h2(Text_Smolder_Markup.text("Safe."));
                       };
-                      throw new Error("Failed pattern match at Main line 58, column 3 - line 63, column 1: " + [ v.value0.constructor.name, v1.constructor.name ]);
+                      throw new Error("Failed pattern match at Main line 57, column 3 - line 62, column 1: " + [ v.value0.constructor.name, v1.constructor.name ]);
                   });
               });
           };
