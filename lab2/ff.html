@@ -10,22 +10,24 @@
 </head>
 <body>
   <h1>First Fit Algorithm</h1>
-  <p>
-    Total Space:
-    <input id="input_total_space" type="text" />
-    <button type="button" onclick="initialize()">Initialize</button>
-  </p>
-  <p>
-    Allocate:
-    <input id="input_allocate" type="text" />
-    <button type="button" onclick="allocate()">Allocate</button>
-  </p>
-  <p>
-    Retrieve:
-    <input id="input_pid" type="text" />
-    <button type="button" onclick="retrieve()">Retrieve</button>
-  </p>
   <canvas id="canvas"></canvas>
-  <p id="p_prom"></p>
+  <div class="panel">
+    <div>
+      <h2>Total Space</h2>
+      <p><input id="input_total_space" type="text" size="4" value="128" />
+      <button type="button" class="btn_1" onclick="initialize()">Initialize</button></p>
+    </div>
+    <div>
+      <h2>Allocate</h2>
+      <p><input id="input_allocate" type="text" size="4" />
+      <button type="button" class="btn_2" onclick="allocate()">Allocate</button></p>
+    </div>
+    <div>
+      <h2>Retrieve</h2>
+      <p><input id="input_pid" type="text" size="4" />
+      <button type="button" class="btn_2" onclick="retrieve()">Retrieve</button></p>
+    </div>
+  </div>
+  <p id="p_warn">You cannot do that!</p>
 </body>
 </html>
