@@ -29,7 +29,7 @@ function writeRList() {
                 + "</tr>";
             listIter = Module.iterEqual(Module.iterNext(Module.iterNext(listIter)), innerList.cend()) ? innerList.cbefore_begin() : Module.iterNext(listIter);
         } while (!Module.iterEqual(listIter, list.getRListCur()) && --size);
-        // Actually it should be OK with the first check only, but it unexpectedly return true at all time and caused an infinite loop, so I added the size check
+        // Actually it should be OK with the first check only, but it unexpectedly returns true all the time and caused an infinite loop, so I added the size check
     }
     tableStr += "</table>";
     document.getElementById("span_rList").innerHTML = tableStr;
