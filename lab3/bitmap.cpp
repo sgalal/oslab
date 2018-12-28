@@ -3,25 +3,23 @@
 #include <string>
 #include <regex>
 
-Mark: 不应该存 Array，应该存 Maybe pid！
-
 using disc_t = std::array<std::array<std::array<bool, 8>, 2>, 4>;
 
-unsigned int sdtou(const std::string &d) {
-    return static_cast<unsigned int>(atoi(u.c_str));
+static unsigned int sdtou(const std::string &d) {
+    return static_cast<unsigned int>(atoi(d.c_str()));
 }
 
-void initialize(disc_t &d) {
+static void initialize(disc_t &d) {
     for (std::array<std::array<bool, 8>, 2> &x: d)
         for (std::array<bool, 8> &y: x)
             for (bool &z: y)
                 z = false;
 }
 
-void print(const disc_t &d) {
+static void print(const disc_t &d) {
     for (const std::array<std::array<bool, 8>, 2> &x: d) {
         for (const std::array<bool, 8> &y: x) {
-            for (bool z: y) {
+            for (const bool &z: y) {
                 std::cout << z;
             }
             std::cout.put(' ');
@@ -30,22 +28,22 @@ void print(const disc_t &d) {
     }
 }
 
-unsigned int getUsedSpace(const disc_t &d) {
-    unsigned int res;
-    for (std::array<std::array<bool, 8>, 2> &x: d)
-        for (std::array<bool, 8> &y: x)
-            for (bool &z: y)
+static unsigned int getUsedSpace(const disc_t &d) {
+    unsigned int res = 0;
+    for (const std::array<std::array<bool, 8>, 2> &x: d)
+        for (const std::array<bool, 8> &y: x)
+            for (const bool &z: y)
                 if (z)
                     res++;
     return res;
 }
 
-void printInfo(const disc_t &d) {
+static void printInfo(const disc_t &d) {
     std::cout << "Total space: " << 8 * 2 * 4 << std::endl
               << "Used space: " << getUsedSpace(d) << std::endl;
 }
 
-void add(disc_t &d, unsigned int size) {
+static bool add(disc_t &d, unsigned int size) {
     unsigned int spareSpace = 8 * 2 * 4 - getUsedSpace(d);
     if (size <= spareSpace) {
         for (std::array<std::array<bool, 8>, 2> &x: d)
@@ -53,19 +51,19 @@ void add(disc_t &d, unsigned int size) {
                 for (bool &z: y)
                     if (!z) {
                         z = true;
-                        if (!size--)
-                            return;
+                        if (!--size)
+                            return true;
                     }
-    else
-        return false;
+    }
+    return false;
 }
 
-void clear(disc_t &d, unsigned int size) {
+static void clear(disc_t &d, unsigned int x, unsigned int y, unsigned int z) {
     d[x][y][z] = false;
 }
 
-void invalid() {
-    std::cout << "Invalid commamd!\nUsage: [i]nfo, [a]dd <size>, [c]lear <size>, [q]uit." << std::endl;
+static void invalid() {
+    std::cout << "Invalid commamd!\nUsage: [i]nfo, [a]dd <size>, [c]lear [0-7] [0-1] [0-3], [q]uit." << std::endl;
 }
 
 int main () {
@@ -80,8 +78,8 @@ int main () {
                 printInfo(disc);
         else if (std::regex_match(line, sm, std::regex("a\\s+(\\d+)")))
                 add(disc, sdtou(sm.str(1)));
-        else if (std::regex_match(line, sm, std::regex("c\\s+(\\d+)")))
-                clear(disc, sdtou(sm.str(1)));
+        else if (std::regex_match(line, sm, std::regex("c\\s+([0-7])\\s+([0-1])\\s+([0-3])")))
+                clear(disc, sdtou(sm.str(1)), sdtou(sm.str(2)), sdtou(sm.str(3)));
         else if (line == "q")
                 break;
             else
