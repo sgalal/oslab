@@ -1,6 +1,6 @@
 # Round-Robin Scheduling Algorithm Visualizer
 
-![demo](./demo.png)
+![demo](demo.png)
 
 ## Design
 
@@ -26,14 +26,16 @@
 
 ## Source Files
 
-* `main.cpp`  -- PCB and its operations
+* `src/main.cpp`  -- PCB and its operations
 * `index.html`  -- Web page for visualization
-* `style.css`  -- Stylesheet for HTML
-* `helper.js` -- JavaScript code to operate and display PCB
+* `rr.css`  -- Stylesheet for HTML
+* `rr.js` -- JavaScript code to operate and display PCB
 
 ## Build
 
-``` bash
+Prerequisite: [Emscripten](http://emscripten.org/)
+
+``` sh
 $ em++ -Wall -Werror -std=c++17 -O --bind -o main.js src/main.cpp
 ```
 
