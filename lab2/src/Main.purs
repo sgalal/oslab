@@ -2,7 +2,8 @@ module Main (Block(..), allocate, initialize, retrieve) where
 
 import Data.List (List(..), fromFoldable, toUnfoldable)
 import Data.Maybe (Maybe(..))
-import Prelude
+import Data.Nullable (Nullable, toNullable)
+import Prelude (map, pure, (+), (-), (<<<), (==), (>))
 
 data Block = Idle { len :: Int } | Allocated { len :: Int, pid :: Int }
 
@@ -13,8 +14,8 @@ allocate_aux p l (Cons (Idle { len : x }) xs)
   | x >  l = Just (Cons (Allocated { len : l, pid : p }) (Cons (Idle { len : x - l }) xs))
 allocate_aux p l (Cons x xs) = map (Cons x) (allocate_aux p l xs)
 
-allocate :: Int -> Int -> Array Block -> Maybe (Array Block)
-allocate p l = map toUnfoldable <<< allocate_aux p l <<< fromFoldable
+allocate :: Int -> Int -> Array Block -> Nullable (Array Block)
+allocate p l = toNullable <<< map toUnfoldable <<< allocate_aux p l <<< fromFoldable
 
 retrieve_aux :: Int -> List Block -> Maybe (List Block)
 retrieve_aux _ Nil = Nothing
@@ -24,8 +25,8 @@ retrieve_aux p (Cons (Allocated { len : x, pid : p' }) (Cons (Idle { len : y }) 
 retrieve_aux p (Cons (Allocated { len : x, pid : p' }) xs) | p == p' = Just (Cons (Idle { len : x }) xs)
 retrieve_aux p (Cons x xs) = map (Cons x) (retrieve_aux p xs)
 
-retrieve :: Int -> Array Block -> Maybe (Array Block)
-retrieve p = map toUnfoldable <<< retrieve_aux p <<< fromFoldable
+retrieve :: Int -> Array Block -> Nullable (Array Block)
+retrieve p = toNullable <<< map toUnfoldable <<< retrieve_aux p <<< fromFoldable
 
 initialize :: Int -> Array Block
-initialize l = pure $ Idle { len : l }
+initialize l = pure (Idle { len : l })

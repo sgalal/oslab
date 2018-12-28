@@ -1,3 +1,5 @@
+"use strict";
+
 var cnt, totalSpace, xs;
 
 window.onload = initialize;
@@ -30,19 +32,20 @@ function initialize() {
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
 
-    cnt = 0;
+    cnt = 1;
 
     totalSpace = parseInt(document.getElementById("input_total_space").value);
     xs = PS.Main.initialize(totalSpace);
-    resShow(xs);
+    xsDraw();
 }
 
 function allocate() {
-    var ret = PS.Main.allocate(++cnt)(parseInt(document.getElementById("input_allocate").value))(xs);
-    if (ret.constructor.name == "Just") {
+    var ret = PS.Main.allocate(cnt)(parseInt(document.getElementById("input_allocate").value))(xs);
+    if (ret) {
+        cnt++;
         document.getElementById("p_warn").style.display = "none";
-        xs = ret.value0;
-        resShow(xs);
+        xs = ret;
+        xsDraw();
     } else {
         document.getElementById("p_warn").style.display = "inherit";
     }
@@ -51,26 +54,26 @@ function allocate() {
 
 function retrieve() {
     var ret = PS.Main.retrieve(parseInt(document.getElementById("input_pid").value))(xs);
-    if (ret.constructor.name == "Just") {
+    if (ret) {
         document.getElementById("p_warn").style.display = "none";
-        xs = ret.value0;
-        resShow(xs);
+        xs = ret;
+        xsDraw();
     } else {
         document.getElementById("p_warn").style.display = "inherit";
     }
     document.getElementById("input_pid").value = "";
 }
 
-function resShow(arr) {
+function xsDraw() {
     var acc = 0;
-    for (var i = 0; i < arr.length; i++) {
-        var pid = arr[i].value0.pid;
-        var len = arr[i].value0.len;
+    for (var i = 0; i < xs.length; i++) {
+        var pid = xs[i].value0.pid;
+        var len = xs[i].value0.len;
         if (pid) {
             showRect(acc, len / totalSpace, true, len + "(" + pid + ")");
         } else {
             showRect(acc, len / totalSpace, false, len);
         }
-        acc += arr[i].value0.len / totalSpace;
+        acc += xs[i].value0.len / totalSpace;
     }
 }
