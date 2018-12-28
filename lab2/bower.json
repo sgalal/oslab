@@ -1,0 +1,19 @@
+{
+  "name": "lab2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-prelude": "^4.1.0",
+    "purescript-console": "^4.2.0",
+    "purescript-effect": "^2.0.0",
+    "purescript-lists": "^5.3.0",
+    "purescript-simple-json": "^4.4.0"
+  },
+  "devDependencies": {
+    "purescript-psci-support": "^4.0.0"
+  }
+}

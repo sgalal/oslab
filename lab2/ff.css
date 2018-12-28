@@ -1,0 +1,49 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	background-color: Snow;
+	border: 0.5rem dotted Pink;
+	height: 100%;
+	font-family: sans;
+	margin: 0 auto;
+	padding-bottom: 1rem;
+	padding-left: 10%;
+	padding-right: 10%;
+	padding-top: 1rem;
+}
+
+button {
+	background-color: FloralWhite;
+	border: 0.0625rem solid grey;
+	border-radius: 0.25rem;
+	margin: 0 1rem;
+	padding: 0.25rem 0.75rem;
+	transition-duration: 0.4s;
+}
+
+button:hover {
+	background-color: White;
+}
+
+textarea {
+	height: 7em;
+	padding: 0.5em;
+	resize: none;
+	width: 12em;
+}
+
+canvas {
+	border: 1px solid;
+	width: 80%;
+	height: 5em;
+}
+
+#p_prom {
+	color: red;
+}

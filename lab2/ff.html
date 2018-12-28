@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>First Fit Algorithm</title>
+  <script src="ff.js"></script>
+  <script src="main.js"></script>
+  <link href="ff.css" rel="stylesheet" />
+</head>
+<body>
+  <h1>First Fit Algorithm</h1>
+  <p>
+    Total Space:
+    <input id="input_total_space" type="text" />
+    <button type="button" onclick="initialize()">Initialize</button>
+  </p>
+  <p>
+    Allocate:
+    <input id="input_allocate" type="text" />
+    <button type="button" onclick="allocate()">Allocate</button>
+  </p>
+  <p>
+    Retrieve:
+    <input id="input_pid" type="text" />
+    <button type="button" onclick="retrieve()">Retrieve</button>
+  </p>
+  <canvas id="canvas"></canvas>
+  <p id="p_prom"></p>
+</body>
+</html>
