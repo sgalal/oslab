@@ -1,91 +1,67 @@
-body{
+* {
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+html, body {
+	min-height: 100vh;
+}
+
+body {
 	background-color: Snow;
 	border: 0.5rem dotted Pink;
-	font-family: "Arial", sans-serif;
 	margin: 0 auto;
-	padding-bottom: 1rem;
-	padding-left: 10%;
-	padding-right: 10%;
-	padding-top: 1rem;
+	line-height: 1.75;
+	padding: 0 10%;
 	text-align: center;
 }
 
-button,input{
+button, input {
 	background-color: FloralWhite;
 	border: 0.0625rem solid grey;
 	border-radius: 0.25rem;
 	transition-duration: 0.4s;
 }
 
-button{
+button {
 	padding: 0.35rem 0.75rem;
 }
 
-input{
+input {
 	padding: 0.25rem 0.375rem;
 }
 
-button:hover,input:hover{
+button:hover, input:hover {
 	background-color: White;
 }
 
-table{
+table {
 	border-collapse: collapse;
 	margin: 0rem auto;
 }
 
-th{
-	font-weight: bold;
-}
-
-table,th,td{
+table, th, td {
 	border: 0.125rem solid black;
 	padding: 0.5rem 0.75rem;
 }
 
-.span_functions{
+.div_up, .div_bottom {
+	display: flex;
+}
+
+.div_up > span, .div_bottom > span {
+	flex: 1;
+}
+
+.div_up {
+	min-height: 300px;
+}
+
+.div_bottom > span {
+	align-items: flex-end;
 	border: 0.125rem solid black;
 	border-radius: 0.5rem;
-	display: block;
+	min-height: 235px;
 	margin: 1rem;
 	padding: 1rem 1rem 0rem 1rem;
-}
-
-#span_rList{
-	float: left;
-	margin: 1rem;
-	width: 40%;
-}
-
-#span_eList{
-	float: right;
-	margin: 1rem;
-	width: 40%;
-}
-
-#div_up{
-	width: 100%;
-}
-
-#div_bottom{
-	padding-top: 400px;
-}
-
-#div_bottom span{
-	height: 210px;
-	width: 33.3%;
-}
-
-#span_bottom_left{
-	float: left;
-	margin: 0 -10%;
-}
-
-#span_bottom_right{
-	float: right;
-	margin: 0 -10%;
-}
-
-#span_bottom_middle{
-	margin: 0 32%;
 }

@@ -1,6 +1,6 @@
 # Round-Robin Scheduling Algorithm Visualizer
 
-![demo](demo.png)
+[![demo](demo.png)](rr.html)
 
 ## Design
 

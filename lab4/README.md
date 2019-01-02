@@ -5,6 +5,7 @@
 * Use PureScript
 * Compile PureScript to JavaScript to render UI in browser
 * Use Free Monad
+* Build HTML tags in a functional way (combinators in [purescript-smolder](https://pursuit.purescript.org/packages/purescript-smolder))
 
 ## Source Files
 

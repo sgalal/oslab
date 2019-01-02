@@ -1,10 +1,16 @@
 # First Fit Algorithm
 
-![demo](demo.png)
+[![demo](demo.png)](ff.html)
+
+## Design
+
+* A `Block` represents a space in the memory with a certain size, which could be `Idle`, that has one attribute `len`, or be `Allocated`, that has two attributes `len` and `pid`
+* The `Block`s are saved in a linked list
+* The allocating and retrieving are handled by [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching)
 
 ## Features
 
-* Use PureScript
+* Use [PureScript](http://www.purescript.org/) and pattern matching
 * Compile PureScript to JavaScript to render UI in browser
 
 ## Source Files
@@ -16,7 +22,7 @@
 
 ## Build
 
-Prerequisite: [PureScript](http://www.purescript.org/)
+Prerequisite: PureScript
 
 ``` sh
 $ npm install -g purescript

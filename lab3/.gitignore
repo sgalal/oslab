@@ -1,1 +1,2 @@
-bitmap.exe
+*.o
+*.exe

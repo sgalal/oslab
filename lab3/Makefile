@@ -1,2 +1,5 @@
-bitmap.exe : bitmap.cpp Makefile
-	clang++ $< -Wall -Werror -std=c++17 -O -o $@
+CXX = clang++
+CXXFLAGS = -Weverything -Werror -Wno-c++98-compat -std=c++17 -O
+
+bitmap.exe : bitmap.o
+	$(CXX) -o $@ $^
