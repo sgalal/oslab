@@ -53,8 +53,8 @@ $ em++ -Wall -Werror -std=c++17 -O --bind -o main.js src/main.cpp
 
 ### References
 
-* https://stackoverflow.com/a/19375586
-* http://kripken.github.io/emscripten-site/docs/porting/connecting_cpp_and_javascript/embind.html
+* [How do I efficiently remove_if only a single element from a forward_list?](https://stackoverflow.com/a/19375586)
+* [Embind](http://kripken.github.io/emscripten-site/docs/porting/connecting_cpp_and_javascript/embind.html)
 
 ## First Fit Algorithm
 
@@ -64,7 +64,20 @@ $ em++ -Wall -Werror -std=c++17 -O --bind -o main.js src/main.cpp
 
 * A `Block` represents a space in the memory with a certain size, which could be `Idle`, that has one attribute `len`, or be `Allocated`, that has two attributes `len` and `pid`
 * The `Block`s are saved in a linked list
-* The allocating and retrieving are handled by [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching)
+* The allocate operation can be handled by [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching):
+$allocate (p, l, list) =
+\begin{cases}
+\mathsf{Allocated} _ { len = x, pid = p } : xs& \left( list = \mathsf{Idle} _ { len = x } : xs, x = l \right) \\
+\mathsf{Allocated} _ { len = l, pid = p } : \mathsf{Idle} _ { len = x - l } : xs& \left( list = \mathsf{Idle} _ { len = x } : xs, x > l \right)
+\end{cases}$
+* The retrieve operation can be handled by pattern matching:
+$retrieve (p, list) =
+\begin{cases}
+\mathsf{Idle} _ { len = x + y + z } : xs& \left( list = \mathsf{Idle} _ { len = x } : \mathsf{Allocated} _ { len = y, pid = p' } : \mathsf{Idle} _ { len = z } : xs, p = p' \right) \\
+\mathsf{Idle} _ { len = x + y } : xs& \left( list = \mathsf{Idle} _ { len = x } : \mathsf{Allocated} _ { len = y, pid = p' } : xs, p = p' \right) \\
+\mathsf{Idle} _ { len = x + y } : xs& \left( list = \mathsf{Allocated} _ { len = x, pid = p' } : \mathsf{Idle} _ { len = y } : xs, p = p' \right) \\
+\mathsf{Idle} _ { len = x } : xs& \left( list = \mathsf{Allocated} _ { len = x, pid = p' } : xs, p = p' \right)
+\end{cases}$
 
 ### Features
 
@@ -124,7 +137,7 @@ $ pulp build --skip-entry-point --no-check-main -O --to main.js
 
 **Build**
 
-Prerequisite: clang, make
+Prerequisites: clang, make
 
 ``` sh
 $ mingw32-make
@@ -145,11 +158,11 @@ $ ./bitmap.exe
 * Use PureScript
 * Compile PureScript to JavaScript to render UI in browser
 * Use Free Monad
-* Build HTML tags in a functional way (combinators in [purescript-smolder](https://pursuit.purescript.org/packages/purescript-smolder))
+* Generate HTML tags by combinators
 
 ### Source Files
 
-* `src/Main.purs`  -- Core library for initializing, allocating and retrieving
+* `src/Main.purs`  -- Core operations and UI rendering
 * `index.html`  -- Web page
 * `banker.css`  -- Style sheet
 
@@ -174,13 +187,20 @@ Many times:
 $ pulp build --skip-entry-point --no-check-main -O --to main.js
 ```
 
+### References
+
+* [Banker's algorithm](https://en.wikipedia.org/wiki/Banker%27s_algorithm)
+* [実例によるPureScript](https://aratama.github.io/purescript/purescript-book-ja)
+* [Monad Transformers](http://dev.stephendiehl.com/hask/#monad-transformers)
+* [What does Free buy us?](https://www.parsonsmatt.org/2017/09/22/what_does_free_buy_us.html)
+
 ## Page Table Illustration
 
 ![demo](lab5/demo.png)
 
 ### Features
 
-* Use Python
+* Use Python 3
 
 ### Source Files
 
