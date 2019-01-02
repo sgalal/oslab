@@ -64,20 +64,22 @@ $ em++ -Wall -Werror -std=c++17 -O --bind -o main.js src/main.cpp
 
 * A `Block` represents a space in the memory with a certain size, which could be `Idle`, that has one attribute `len`, or be `Allocated`, that has two attributes `len` and `pid`
 * The `Block`s are saved in a linked list
-* The allocate operation can be handled by [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching):
-$allocate (p, l, list) =
+* The allocate operation can be handled by [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching): ![allocate patterns](https://latex.codecogs.com/gif.latex?allocate%20%28p%2C%20l%2C%20list%29%20%3D%20%5Cbegin%7Bcases%7D%20%5Cmathsf%7BAllocated%7D%20_%20%7B%20len%20%3D%20x%2C%20pid%20%3D%20p%20%7D%20%3A%20xs%26%20%5Cleft%28%20list%20%3D%20%5Cmathsf%7BIdle%7D%20_%20%7B%20len%20%3D%20x%20%7D%20%3A%20xs%2C%20x%20%3D%20l%20%5Cright%29%20%5C%5C%20%5Cmathsf%7BAllocated%7D%20_%20%7B%20len%20%3D%20l%2C%20pid%20%3D%20p%20%7D%20%3A%20%5Cmathsf%7BIdle%7D%20_%20%7B%20len%20%3D%20x%20-%20l%20%7D%20%3A%20xs%26%20%5Cleft%28%20list%20%3D%20%5Cmathsf%7BIdle%7D%20_%20%7B%20len%20%3D%20x%20%7D%20%3A%20xs%2C%20x%20%3E%20l%20%5Cright%29%20%5Cend%7Bcases%7D)<!--
+allocate (p, l, list) =
 \begin{cases}
 \mathsf{Allocated} _ { len = x, pid = p } : xs& \left( list = \mathsf{Idle} _ { len = x } : xs, x = l \right) \\
 \mathsf{Allocated} _ { len = l, pid = p } : \mathsf{Idle} _ { len = x - l } : xs& \left( list = \mathsf{Idle} _ { len = x } : xs, x > l \right)
-\end{cases}$
-* The retrieve operation can be handled by pattern matching:
-$retrieve (p, list) =
+\end{cases}
+-->
+* The retrieve operation can be handled by pattern matching: ![retrieve patterns](https://latex.codecogs.com/gif.latex?retrieve%20%28p%2C%20list%29%20%3D%20%5Cbegin%7Bcases%7D%20%5Cmathsf%7BIdle%7D%20_%20%7B%20len%20%3D%20x%20&plus;%20y%20&plus;%20z%20%7D%20%3A%20xs%26%20%5Cleft%28%20list%20%3D%20%5Cmathsf%7BIdle%7D%20_%20%7B%20len%20%3D%20x%20%7D%20%3A%20%5Cmathsf%7BAllocated%7D%20_%20%7B%20len%20%3D%20y%2C%20pid%20%3D%20p%27%20%7D%20%3A%20%5Cmathsf%7BIdle%7D%20_%20%7B%20len%20%3D%20z%20%7D%20%3A%20xs%2C%20p%20%3D%20p%27%20%5Cright%29%20%5C%5C%20%5Cmathsf%7BIdle%7D%20_%20%7B%20len%20%3D%20x%20&plus;%20y%20%7D%20%3A%20xs%26%20%5Cleft%28%20list%20%3D%20%5Cmathsf%7BIdle%7D%20_%20%7B%20len%20%3D%20x%20%7D%20%3A%20%5Cmathsf%7BAllocated%7D%20_%20%7B%20len%20%3D%20y%2C%20pid%20%3D%20p%27%20%7D%20%3A%20xs%2C%20p%20%3D%20p%27%20%5Cright%29%20%5C%5C%20%5Cmathsf%7BIdle%7D%20_%20%7B%20len%20%3D%20x%20&plus;%20y%20%7D%20%3A%20xs%26%20%5Cleft%28%20list%20%3D%20%5Cmathsf%7BAllocated%7D%20_%20%7B%20len%20%3D%20x%2C%20pid%20%3D%20p%27%20%7D%20%3A%20%5Cmathsf%7BIdle%7D%20_%20%7B%20len%20%3D%20y%20%7D%20%3A%20xs%2C%20p%20%3D%20p%27%20%5Cright%29%20%5C%5C%20%5Cmathsf%7BIdle%7D%20_%20%7B%20len%20%3D%20x%20%7D%20%3A%20xs%26%20%5Cleft%28%20list%20%3D%20%5Cmathsf%7BAllocated%7D%20_%20%7B%20len%20%3D%20x%2C%20pid%20%3D%20p%27%20%7D%20%3A%20xs%2C%20p%20%3D%20p%27%20%5Cright%29%20%5Cend%7Bcases%7D)<!--
+retrieve (p, list) =
 \begin{cases}
 \mathsf{Idle} _ { len = x + y + z } : xs& \left( list = \mathsf{Idle} _ { len = x } : \mathsf{Allocated} _ { len = y, pid = p' } : \mathsf{Idle} _ { len = z } : xs, p = p' \right) \\
 \mathsf{Idle} _ { len = x + y } : xs& \left( list = \mathsf{Idle} _ { len = x } : \mathsf{Allocated} _ { len = y, pid = p' } : xs, p = p' \right) \\
 \mathsf{Idle} _ { len = x + y } : xs& \left( list = \mathsf{Allocated} _ { len = x, pid = p' } : \mathsf{Idle} _ { len = y } : xs, p = p' \right) \\
 \mathsf{Idle} _ { len = x } : xs& \left( list = \mathsf{Allocated} _ { len = x, pid = p' } : xs, p = p' \right)
-\end{cases}$
+\end{cases}
+-->
 
 ### Features
 
@@ -197,6 +199,11 @@ $ pulp build --skip-entry-point --no-check-main -O --to main.js
 ## Page Table Illustration
 
 ![demo](lab5/demo.png)
+
+### Design
+
+* Use a pre-defined list as the page table
+* If the input is out of bound, then output an error message
 
 ### Features
 
