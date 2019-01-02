@@ -3,11 +3,11 @@
 _My Experiments of Operating System_
 
 | Lab | Motif | UI | Written in |
-| :- | :- | :- | :- | :- |
-| 1 | [Round-Robin Scheduling Algorithm](#round-robin-scheduling-algorithm) | [Web Page](https://chromezh.github.io/oslab/lab1/rr.html) | C++ |
-| 2 | [First Fit Algorithm](#first-fit-algorithm) | [Web Page](https://chromezh.github.io/oslab/lab2/ff.html) | PureScript |
+| :- | :- | :- | :- |
+| 1 | [Round-Robin Scheduling Algorithm](#round-robin-scheduling-algorithm) | [Web Page](https://chromezh.github.io/oslab/lab1/) | C++ |
+| 2 | [First Fit Algorithm](#first-fit-algorithm) | [Web Page](https://chromezh.github.io/oslab/lab2/) | PureScript |
 | 3 | [Bitmap](#bitmap) | Console | C++ |
-| 4 | [Banker's Algorithm](#bankers-algorithm) | [Web Page](https://chromezh.github.io/oslab/lab4/banker.html) | PureScript |
+| 4 | [Banker's Algorithm](#bankers-algorithm) | [Web Page](https://chromezh.github.io/oslab/lab4/) | PureScript |
 | 5 | [Page Table Illustration](#page-table-illustration) | Console | Python |
 
 ## Round-Robin Scheduling Algorithm
@@ -74,7 +74,7 @@ $ em++ -Wall -Werror -std=c++17 -O --bind -o main.js src/main.cpp
 ### Source Files
 
 * `src/Main.purs`  -- Core library for initializing, allocating and retrieving
-* `ff.html`  -- Web page
+* `index.html`  -- Web page
 * `ff.css`  -- Style sheet
 * `ff.js`  -- JavaScript code to operate and display
 
@@ -150,9 +150,8 @@ $ ./bitmap.exe
 ### Source Files
 
 * `src/Main.purs`  -- Core library for initializing, allocating and retrieving
-* `ff.html`  -- Web page
-* `ff.css`  -- Style sheet
-* `ff.js`  -- JavaScript code to operate and display
+* `index.html`  -- Web page
+* `banker.css`  -- Style sheet
 
 ### Build
 
@@ -185,7 +184,7 @@ $ pulp build --skip-entry-point --no-check-main -O --to main.js
 
 ### Source Files
 
-* `paging.py`
+* `paging.py`  -- Page table and its operations
 
 ### Run
 
