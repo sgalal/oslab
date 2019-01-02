@@ -83,7 +83,8 @@ retrieve (p, list) =
 
 ### Features
 
-* Use [PureScript](http://www.purescript.org/) and pattern matching
+* Use [PureScript](http://www.purescript.org/), which is easy to do pattern matching
+* Use Maybe Functor for error handling
 * Compile PureScript to JavaScript to render UI in browser
 
 ### Source Files
@@ -113,6 +114,10 @@ Many times:
 ``` sh
 $ pulp build --skip-entry-point --no-check-main -O --to main.js
 ```
+
+### References
+
+* [実例によるPureScript](https://aratama.github.io/purescript/purescript-book-ja)
 
 ## Bitmap
 
