@@ -1,5 +1,6 @@
 page_table = [1, 4, 3, 7]
-print("Page Table Illustration\nPage table:", page_table)
+print("Page Table Illustration")
+print("Page table:", page_table)
 page_num = int(input("Page number: "))
 offset = int(input("Offset: "))
 try:
