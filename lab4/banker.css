@@ -26,6 +26,7 @@ button:hover {
 }
 
 textarea {
+	border: 2px solid;
 	height: 7em;
 	padding: 0.5em;
 	resize: none;

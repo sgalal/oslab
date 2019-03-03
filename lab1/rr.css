@@ -17,9 +17,7 @@ body {
 }
 
 button, input {
-	background-color: FloralWhite;
 	border: 0.0625rem solid grey;
-	border-radius: 0.25rem;
 	transition-duration: 0.4s;
 }
 
@@ -49,7 +47,7 @@ table, th, td {
 	display: flex;
 }
 
-.div_up > span, .div_bottom > span {
+.div_up > section, .div_bottom > section {
 	flex: 1;
 }
 
@@ -57,7 +55,7 @@ table, th, td {
 	min-height: 300px;
 }
 
-.div_bottom > span {
+.div_bottom > section {
 	align-items: flex-end;
 	border: 0.125rem solid black;
 	border-radius: 0.5rem;

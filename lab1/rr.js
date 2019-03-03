@@ -32,7 +32,7 @@ function writeRList() {
         // Actually it should be OK with the first check only, but it unexpectedly returns true all the time and caused an infinite loop, so I added the size check
     }
     tableStr += "</table>";
-    document.getElementById("span_rList").innerHTML = tableStr;
+    document.getElementById("rList").innerHTML = tableStr;
 }
 
 function writeEList() {
@@ -54,7 +54,7 @@ function writeEList() {
         listIter = Module.iterNext(listIter);
     }
     tableStr += "</table>";
-    document.getElementById("span_eList").innerHTML = tableStr;
+    document.getElementById("eList").innerHTML = tableStr;
 }
 
 function visualize() {
