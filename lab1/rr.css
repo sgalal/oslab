@@ -8,58 +8,52 @@ html, body {
 }
 
 body {
-	background-color: Snow;
-	border: 0.5rem dotted Pink;
+	background-color: snow;
+	border: 0.5em dotted pink;
 	margin: 0 auto;
-	line-height: 1.75;
-	padding: 0 10%;
-	text-align: center;
-}
-
-button, input {
-	border: 0.0625rem solid grey;
-	transition-duration: 0.4s;
-}
-
-button {
-	padding: 0.35rem 0.75rem;
+	padding: 1rem 10%;
 }
 
 input {
-	padding: 0.25rem 0.375rem;
+	border: 1px solid grey;
+	padding: 0.25em 0.375em;
+	transition-duration: 0.4s;
 }
 
-button:hover, input:hover {
-	background-color: White;
+input:hover {
+	background-color: white;
+}
+
+label {
+	display: block;
+	padding: 0.25em 0;
 }
 
 table {
 	border-collapse: collapse;
-	margin: 0rem auto;
+	margin: 0 auto;
 }
 
-table, th, td {
-	border: 0.125rem solid black;
-	padding: 0.5rem 0.75rem;
+th, td {
+	border: 1px solid black;
+	padding: 0.25em 0.5em;
 }
 
 .div_up, .div_bottom {
+	align-items: stretch;
 	display: flex;
+	flex-wrap: wrap;
 }
 
-.div_up > section, .div_bottom > section {
+.div_up > section, .div_bottom > form {
 	flex: 1;
 }
 
 .div_up {
 	min-height: 300px;
+	text-align: center;
 }
 
-.div_bottom > section {
-	align-items: flex-end;
-	border: 0.125rem solid black;
-	border-radius: 0.5rem;
-	min-height: 235px;
-	margin: 1rem;
-	padding: 1rem 1rem 0rem 1rem;
+fieldset {
+	height: 100%;
 }

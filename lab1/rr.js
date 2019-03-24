@@ -10,7 +10,7 @@ var Module = {
 };
 
 function writeRList() {
-    var tableStr = "<h2>Running List</h2><table><tr>"
+    var tableStr = "<p><b>Running List</b></p><table><tr>"
     + "<th>Pname</th>"
     + "<th>Pid</th>"
     + "<th>Time Needed</th>"
@@ -36,7 +36,7 @@ function writeRList() {
 }
 
 function writeEList() {
-    var tableStr = "<h2>Ending List</h2><table><tr>"
+    var tableStr = "<p><b>Ended List</b></p><table><tr>"
     + "<th>Pname</th>"
     + "<th>Pid</th>"
     + "<th>Time Needed</th>"
@@ -62,17 +62,17 @@ function visualize() {
     writeEList();
 }
 
-function but_add() {
-    list.append(document.getElementById("input_pname").value, parseInt(document.getElementById("input_timeNeeded").value));
+function addProcess() {
+    list.append(pname.value, parseInt(timeNeeded.value));
     visualize();
 }
 
-function but_kill() {
-    list.kill(parseInt(document.getElementById("input_pid").value));
+function killProcess() {
+    list.kill(parseInt(pid.value));
     visualize();
 }
 
-function but_run() {
+function runProcess() {
     list.run();
     visualize();
 }

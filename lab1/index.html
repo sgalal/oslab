@@ -10,27 +10,37 @@
 </head>
 <body>
   <h1>Round-Robin Scheduling Algorithm</h1>
+
   <div class="div_up">
     <section id="rList"></section>
     <section id="eList"></section>
   </div>
+
   <div class="div_bottom">
-    <section>
-      <h2>Add Process</h2>
-      <p>Process Name: <input id="input_pname" type="text"/></p>
-      <p>Time Needed: <input id="input_timeNeeded" type="text"/></p>
-      <p><button type="button" onclick="but_add()">Confirm</button></p>
-    </section>
-    <section>
-      <h2>Kill Process</h2>
-      Process ID: <input id="input_pid" type="text"/>
-      <p><button type="button" onclick="but_kill()">Confirm</button></p>
-    </section>
-    <section>
-      <h2>Run Process</h2>
-      <p>Run for every second!</p>
-      <p><button type="button" onclick="but_run()">Confirm</button></p>
-    </section>
+    <form onsubmit="addProcess(); return false">
+      <fieldset>
+        <legend>Add Process</legend>
+        <label for="pname">Process Name: <input type="text" id="pname" required /></label>
+        <label for="timeNeeded">Time Needed: <input type="number" id="timeNeeded" min="0" required /></label>
+        <input type="submit" value="Confirm"/>
+      </fieldset>
+    </form>
+
+    <form onsubmit="killProcess(); return false">
+      <fieldset>
+        <legend>Kill Process</legend>
+        <label for="pid">Process ID: <input type="number" id="pid" min="1" required /></label>
+        <input type="submit" value="Confirm"/>
+      </fieldset>
+    </form>
+
+    <form onsubmit="runProcess(); return false">
+      <fieldset>
+        <legend>Run Process</legend>
+        <p>Run for a second!</p>
+        <input type="submit" value="Confirm"/>
+      </fieldset>
+    </form>
   </div>
 </body>
 </html>
