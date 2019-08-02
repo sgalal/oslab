@@ -1,45 +1,38 @@
-* {
-	box-sizing: border-box;
-}
-
 body {
 	background-color: Snow;
-	border: 0.5rem dotted Pink;
-	font-family: sans-serif;
+	font-family: 'Montserrat', sans-serif;
 	margin: 0 auto;
-	padding-bottom: 1rem;
-	padding-left: 10%;
-	padding-right: 10%;
-	padding-top: 1rem;
+	padding: 1em 15%;
 }
 
-button {
-	background-color: FloralWhite;
-	border: 0.0625rem solid grey;
-	border-radius: 0.25rem;
-	padding: 0.25rem 0.75rem;
-	transition-duration: 0.4s;
+@media screen and (max-width: 768px) {
+	body {
+		padding: 1em;
+	}
 }
 
-button:hover {
-	background-color: White;
+label {
+	padding: 0 1em;
 }
 
 textarea {
-	border: 2px solid;
+	font-family: Consolas, monospace;
 	height: 7em;
-	padding: 0.5em;
 	resize: none;
-	width: 12em;
+	width: 100%;
 }
 
-.content {
+form > div {
 	display: flex;
 	flex-wrap: wrap;
 }
 
-button, .content>div {
-	margin: 0 1rem;
+form > div > label {
+	flex: 1;
+}
+
+form > div > label > textarea {
+	display: block !important;
 }
 
 .alloc {
@@ -50,9 +43,7 @@ button, .content>div {
 	color: red;
 }
 
-table, th, td {
-	border: 2px solid;
-	border-collapse: collapse;
-	margin: 1em;
-	padding: 0.25em;
+span[title] {
+	text-decoration-line: underline;
+	text-decoration-style: dashed;
 }
