@@ -1,0 +1,25 @@
+.div_up, .div_bottom {
+	align-items: stretch;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.div_up > div, .div_bottom > form {
+	flex: 1;
+}
+
+.div_up {
+	min-height: 300px;
+	text-align: center;
+}
+
+.div_up table {
+	margin: 0 auto;
+}
+
+form {
+	border: 1px solid #aaa;
+	border-radius: 0.5em;
+	margin: 0 0.5em;
+	padding: 0 1em;
+}

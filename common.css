@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	min-height: calc(100vh - 1rem);
+	margin: 0.5rem 1rem;
+}
+
+body {
+	background-color: snow;
+	border: 0.5em dotted pink;
+	font-family: 'Montserrat', sans-serif;
+	margin: 0 auto;
+	min-height: calc(100vh - 1rem);
+	padding: 1rem 10%;
+}
+
+@media screen and (max-width: 768px) {
+	body {
+		font-size: 85%;
+	}
+}

@@ -1,27 +1,3 @@
-* {
-	box-sizing: border-box;
-	font-family: sans-serif;
-}
-
-html {
-	height: 100%;
-}
-
-body {
-	background-color: Snow;
-	border: 0.5rem dotted Pink;
-	margin: 0 auto;
-	height: 100%;
-	line-height: 1.75;
-	padding: 0 10%;
-}
-
-@media screen and (max-width: 768px) {
-	body {
-		font-size: 80%;
-	}
-}
-
 input, button {
 	border: 1px solid black;
 	margin: 0.5em;

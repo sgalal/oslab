@@ -1,45 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Round-Robin Scheduling Algorithm</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <script src="rr.js"></script>
   <script src="main.js"></script>
-  <link href="rr.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"/>
+  <link rel="stylesheet" href="../common.css"/>
+  <link rel="stylesheet" href="index.css"/>
 </head>
 <body>
   <h1>Round-Robin Scheduling Algorithm</h1>
 
   <div class="div_up">
-    <section id="rList"></section>
-    <section id="eList"></section>
+    <div id="rList"></div>
+    <div id="eList"></div>
   </div>
 
   <div class="div_bottom">
-    <form onsubmit="addProcess(); return false">
-      <fieldset>
-        <legend>Add Process</legend>
-        <label for="pname">Process Name: <input type="text" id="pname" required /></label>
-        <label for="timeNeeded">Time Needed: <input type="number" id="timeNeeded" min="0" required /></label>
-        <input type="submit" value="Confirm"/>
-      </fieldset>
+    <form class="pure-form" onsubmit="addProcess(); return false">
+      <h2>Add Process</h2>
+      <p><label for="pname">Process Name: <input type="text" id="pname" required /></label></p>
+      <p><label for="timeNeeded">Time Needed: <input type="number" id="timeNeeded" min="0" required /></label></p>
+      <p><input class="pure-button" type="submit" value="Confirm"/>
     </form>
 
-    <form onsubmit="killProcess(); return false">
-      <fieldset>
-        <legend>Kill Process</legend>
-        <label for="pid">Process ID: <input type="number" id="pid" min="1" required /></label>
-        <input type="submit" value="Confirm"/>
-      </fieldset>
+    <form class="pure-form" onsubmit="killProcess(); return false">
+      <h2>Kill Process</h2>
+      <p><label for="pid">Process ID: <input type="number" id="pid" min="1" required /></label></p>
+      <p><input class="pure-button" type="submit" value="Confirm"/></p>
     </form>
 
-    <form onsubmit="runProcess(); return false">
-      <fieldset>
-        <legend>Run Process</legend>
-        <p>Run for a second!</p>
-        <input type="submit" value="Confirm"/>
-      </fieldset>
+    <form class="pure-form" onsubmit="runProcess(); return false">
+      <h2>Run Process</h2>
+      <p>Run for a second!</p>
+      <p><input class="pure-button" type="submit" value="Confirm"/></p>
     </form>
   </div>
 </body>
