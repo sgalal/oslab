@@ -2,7 +2,7 @@
 
 _My Experiments of Operating System_
 
-| Lab | Motif | UI | Written in |
+| Lab | Motif | UI | Language |
 | :- | :- | :- | :- |
 | 1 | [Round-Robin Scheduling Algorithm](#round-robin-scheduling-algorithm) | [Web Page](https://sgal.self.sugina.cc/oslab/lab1/) | C++ |
 | 2 | [First Fit Algorithm](#first-fit-algorithm) | [Web Page](https://sgal.self.sugina.cc/oslab/lab2/) | PureScript |

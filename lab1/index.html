@@ -20,22 +20,21 @@
 
   <div class="div_bottom">
     <form class="pure-form" onsubmit="addProcess(); return false">
-      <h2>Add Process</h2>
+      <h2>Add process</h2>
       <p><label for="pname">Process Name: <input type="text" id="pname" required /></label></p>
       <p><label for="timeNeeded">Time Needed: <input type="number" id="timeNeeded" min="0" required /></label></p>
-      <p><input class="pure-button" type="submit" value="Confirm"/>
+      <p><input class="pure-button" type="submit" value="Add"/>
     </form>
 
     <form class="pure-form" onsubmit="killProcess(); return false">
-      <h2>Kill Process</h2>
+      <h2>Kill process</h2>
       <p><label for="pid">Process ID: <input type="number" id="pid" min="1" required /></label></p>
-      <p><input class="pure-button" type="submit" value="Confirm"/></p>
+      <p><input class="pure-button" type="submit" value="Kill"/></p>
     </form>
 
     <form class="pure-form" onsubmit="runProcess(); return false">
-      <h2>Run Process</h2>
-      <p>Run for a second!</p>
-      <p><input class="pure-button" type="submit" value="Confirm"/></p>
+      <h2>Run for a second</h2>
+      <p><input class="pure-button" type="submit" value="Run"/></p>
     </form>
   </div>
 </body>
