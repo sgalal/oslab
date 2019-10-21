@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <title>Round-Robin Scheduling Algorithm</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <script src="rr.js"></script>
   <script src="main.js"></script>
@@ -21,14 +21,23 @@
   <div class="div_bottom">
     <form class="pure-form" onsubmit="addProcess(); return false">
       <h2>Add process</h2>
-      <p><label for="pname">Process Name: <input type="text" id="pname" required /></label></p>
-      <p><label for="timeNeeded">Time Needed: <input type="number" id="timeNeeded" min="0" required /></label></p>
+      <p>
+        <label for="pname">Process Name:</label>
+        <input type="text" id="pname" required />
+      </p>
+      <p>
+        <label for="timeNeeded">Time Needed:</label>
+        <input type="number" id="timeNeeded" min="0" required />
+      </p>
       <p><input class="pure-button" type="submit" value="Add"/>
     </form>
 
     <form class="pure-form" onsubmit="killProcess(); return false">
       <h2>Kill process</h2>
-      <p><label for="pid">Process ID: <input type="number" id="pid" min="1" required /></label></p>
+      <p>
+        <label for="pid">Process ID:</label>
+        <input type="number" id="pid" min="1" required />
+      </p>
       <p><input class="pure-button" type="submit" value="Kill"/></p>
     </form>
 

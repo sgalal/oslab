@@ -1,7 +1,30 @@
+body {
+	text-align: center;
+}
+
 .div_up, .div_bottom {
 	align-items: stretch;
 	display: flex;
 	flex-wrap: wrap;
+}
+
+#rList::before {
+	content: "Running List";
+}
+
+#eList::before {
+	content: "Ended List";
+}
+
+.div_up > div::before {
+	display: block;
+	font-size: 125%;
+	font-weight: bold;
+	padding: 1em 0;
+}
+
+input {
+	display: initial !important;
 }
 
 .div_up > div, .div_bottom > form {
@@ -17,9 +40,20 @@
 	margin: 0 auto;
 }
 
+.div_up th, .div_up td, form {
+	border: 1px solid deeppink;
+}
+
 form {
-	border: 1px solid #aaa;
 	border-radius: 0.5em;
-	margin: 0 0.5em;
+	margin: 0.5em;
 	padding: 0 1em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-content: space-between;
+}
+
+form > *:not(:last-child) {
+	margin-bottom: 0;
 }

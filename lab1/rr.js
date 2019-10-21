@@ -10,7 +10,7 @@ var Module = {
 };
 
 function writeRList() {
-    var tableStr = '<p><b>Running List</b></p><table class="pure-table"><tr>'
+    var tableStr = '<table class="pure-table"><tr>'
     + "<th>Pname</th>"
     + "<th>Pid</th>"
     + "<th>Time Needed</th>"
@@ -36,7 +36,7 @@ function writeRList() {
 }
 
 function writeEList() {
-    var tableStr = '<p><b>Ended List</b></p><table class="pure-table"><tr>'
+    var tableStr = '<table class="pure-table"><tr>'
     + "<th>Pname</th>"
     + "<th>Pid</th>"
     + "<th>Time Needed</th>"
