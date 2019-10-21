@@ -1,7 +1,3 @@
-body {
-	text-align: center;
-}
-
 .div_up, .div_bottom {
 	align-items: stretch;
 	display: flex;
@@ -23,10 +19,6 @@ body {
 	padding: 1em 0;
 }
 
-input {
-	display: initial !important;
-}
-
 .div_up > div, .div_bottom > form {
 	flex: 1;
 }
@@ -36,15 +28,16 @@ input {
 	text-align: center;
 }
 
-.div_up table {
-	margin: 0 auto;
+input[type="submit"].btn_2 {
+	background-color: #d8e1fe;
 }
 
-.div_up th, .div_up td, form {
-	border: 1px solid deeppink;
+input[type="submit"].btn_2:hover {
+	background-color: #ebeffb;
 }
 
 form {
+	border: 1px solid deeppink;
 	border-radius: 0.5em;
 	margin: 0.5em;
 	padding: 0 1em;

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>First Fit Algorithm</title>
-  <script src="ff.js"></script>
+  <script src="index.js"></script>
   <script src="main.js"></script>
   <link rel="stylesheet" href="../common.css"/>
   <link rel="stylesheet" href="lab2.css"/>
@@ -15,20 +15,26 @@
   <div class="panel">
     <div>
       <h2>Total Space</h2>
-      <p><input id="input_total_space" type="text" size="4" value="128"/>
-      <button type="button" class="btn_1" onclick="initialize()">Initialize</button></p>
+      <p>
+        <input id="input_total_space" type="text" size="4" value="128"/>
+        <input type="button" class="btn_1" onclick="initialize()" value="Initialize"/>
+      </p>
     </div>
     <div>
       <h2>Allocate</h2>
-      <p><input id="input_allocate" type="text" size="4"/>
-      <button type="button" class="btn_2" onclick="allocate()">Allocate</button></p>
+      <p>
+        <input id="input_allocate" type="text" size="4"/>
+        <input type="button" class="btn_2" onclick="allocate()" value="Allocate"/>
+      </p>
     </div>
     <div>
       <h2>Retrieve</h2>
-      <p><input id="input_pid" type="text" size="4"/>
-      <button type="button" class="btn_2" onclick="retrieve()">Retrieve</button></p>
+      <p>
+        <input id="input_pid" type="text" size="4"/>
+        <input type="button" class="btn_2" onclick="retrieve()" value="Retrieve"/>
+      </p>
     </div>
   </div>
-  <p id="p_warn">You cannot do that!</p>
+  <p id="p_warn"></p>
 </body>
 </html>

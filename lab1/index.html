@@ -4,9 +4,8 @@
   <title>Round-Robin Scheduling Algorithm</title>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script src="rr.js"></script>
+  <script src="index.js"></script>
   <script src="main.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"/>
   <link rel="stylesheet" href="../common.css"/>
   <link rel="stylesheet" href="index.css"/>
 </head>
@@ -19,7 +18,7 @@
   </div>
 
   <div class="div_bottom">
-    <form class="pure-form" onsubmit="addProcess(); return false">
+    <form onsubmit="addProcess(); return false">
       <h2>Add process</h2>
       <p>
         <label for="pname">Process Name:</label>
@@ -29,21 +28,21 @@
         <label for="timeNeeded">Time Needed:</label>
         <input type="number" id="timeNeeded" min="0" required />
       </p>
-      <p><input class="pure-button" type="submit" value="Add"/>
+      <p><input type="submit" class="btn_2" value="Add"/>
     </form>
 
-    <form class="pure-form" onsubmit="killProcess(); return false">
+    <form onsubmit="killProcess(); return false">
       <h2>Kill process</h2>
       <p>
         <label for="pid">Process ID:</label>
         <input type="number" id="pid" min="1" required />
       </p>
-      <p><input class="pure-button" type="submit" value="Kill"/></p>
+      <p><input type="submit" value="Kill"/></p>
     </form>
 
-    <form class="pure-form" onsubmit="runProcess(); return false">
+    <form onsubmit="runProcess(); return false">
       <h2>Run for a second</h2>
-      <p><input class="pure-button" type="submit" value="Run"/></p>
+      <p><input type="submit" value="Run"/></p>
     </form>
   </div>
 </body>

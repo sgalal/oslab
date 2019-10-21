@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Banker's Algorithm</title>
   <script src="main.js"></script>
-  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css"/>
   <link rel="stylesheet" href="../common.css"/>
   <link rel="stylesheet" href="index.css"/>
 <script>
@@ -21,7 +20,7 @@ window.onload = solving;
 </head>
 <body>
   <h1>Banker's Algorithm</h1>
-  <form class="pure-form" onsubmit="solving(); return false">
+  <form onsubmit="solving(); return false">
     <div>
       <label>
         Allocated Matrix
@@ -37,7 +36,7 @@ window.onload = solving;
       </label>
     </div>
     <p style="text-align: center;">
-      <input type="submit" class="pure-button" value="Submit"/>
+      <input type="submit" value="Submit"/>
     </p>
   </form>
   <div id="result"></div>

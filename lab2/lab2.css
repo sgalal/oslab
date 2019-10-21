@@ -1,27 +1,8 @@
-input, button {
-	border: 1px solid black;
-	margin: 0.5em;
-	padding: 0.25rem 0.75rem;
-}
-
-button {
-	border-radius: 0.25rem;
-	transition-duration: 0.4s;
-}
-
-.btn_1 {
-	background-color: #ffb9b9;
-}
-
-.btn_1:hover {
-	background-color: #ffdcdc;
-}
-
-.btn_2 {
+input[type="button"].btn_2 {
 	background-color: #d8e1fe;
 }
 
-.btn_2:hover {
+input[type="button"].btn_2:hover {
 	background-color: #ebeffb;
 }
 
@@ -45,6 +26,8 @@ canvas {
 
 #p_warn {
 	color: red;
+}
+
+#p_warn:empty {
 	display: none;
-	margin: 0.25rem 0;
 }
