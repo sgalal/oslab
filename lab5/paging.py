@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 page_table = [1, 4, 3, 7]
 print("Page Table Illustration")
 print("Page table:", page_table)

@@ -59,14 +59,14 @@ _My Experiments of Operating System_
 
 * `src/main.cpp`  -- PCB and its operations
 * `index.html`  -- Web page for visualization
-* `rr.css`  -- Stylesheet for HTML
-* `rr.js` -- JavaScript code to operate and display PCB
+* `index.css`  -- Stylesheet for HTML
+* `index.js` -- JavaScript code to operate and display PCB
 
 ### Build
 
 Prerequisite: [Emscripten](http://emscripten.org/)
 
-``` sh
+```sh
 $ em++ -Wall -Werror -std=c++17 -O --bind -o main.js src/main.cpp
 ```
 
@@ -122,27 +122,27 @@ retrieve (p, list) =
 
 * `src/Main.purs`  -- Core library for initializing, allocating and retrieving
 * `index.html`  -- Web page
-* `ff.css`  -- Style sheet
-* `ff.js`  -- JavaScript code to operate and display
+* `index.css`  -- Style sheet
+* `index.js`  -- JavaScript code to operate and display
 
 ### Build
 
 Prerequisite: PureScript
 
-``` sh
+```sh
 $ npm install -g purescript
 $ npm install -g pulp bower
 ```
 
 Once:
 
-``` sh
+```sh
 $ bower install
 ```
 
 Many times:
 
-``` sh
+```sh
 $ pulp build --skip-entry-point --no-check-main -O --to main.js
 ```
 
@@ -193,13 +193,13 @@ $ pulp build --skip-entry-point --no-check-main -O --to main.js
 
 Prerequisites: clang, make
 
-``` sh
+```sh
 $ mingw32-make
 ```
 
 **Run**
 
-``` sh
+```sh
 $ ./bitmap.exe
 ```
 
@@ -228,26 +228,26 @@ $ ./bitmap.exe
 
 * `src/Main.purs`  -- Core operations and UI rendering
 * `index.html`  -- Web page
-* `banker.css`  -- Style sheet
+* `index.css`  -- Style sheet
 
 ### Build
 
 Prerequisite: [PureScript](http://www.purescript.org/)
 
-``` sh
+```sh
 $ npm install -g purescript
 $ npm install -g pulp bower
 ```
 
 Once:
 
-``` sh
+```sh
 $ bower install
 ```
 
 Many times:
 
-``` sh
+```sh
 $ pulp build --skip-entry-point --no-check-main -O --to main.js
 ```
 
@@ -284,6 +284,6 @@ $ pulp build --skip-entry-point --no-check-main -O --to main.js
 
 ### Run
 
-``` sh
-python paging.py
+```sh
+./paging.py
 ```

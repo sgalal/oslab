@@ -2,13 +2,6 @@ label {
 	padding: 0 1em;
 }
 
-textarea {
-	font-family: Consolas, monospace;
-	height: 7em;
-	resize: none;
-	width: 100%;
-}
-
 form > div {
 	display: flex;
 	flex-wrap: wrap;

@@ -30,8 +30,21 @@ input[type="text"], input[type="number"] {
 	border: 1px solid #ccc;
 	box-shadow: inset 0 1px 3px #ddd;
 	vertical-align: middle;
-	box-sizing: border-box;
 	font: inherit;
+}
+
+textarea {
+	border: 1px solid #ccc;
+	box-shadow: inset 0 1px 3px #ddd;
+	font: inherit;
+	height: 7em;
+	padding: 0.25em 0.5em;
+	resize: none;
+	width: 100%;
+}
+
+input[type="text"]:hover, input[type="number"]:hover, textarea:hover {
+	border: 1px solid #ffdcdc;
 }
 
 input[type="button"], input[type="submit"] {
