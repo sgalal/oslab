@@ -4,10 +4,10 @@ _My Experiments of Operating System_
 
 | Lab | Motif | UI | Language |
 | :- | :- | :- | :- |
-| 1 | [Round-Robin Scheduling Algorithm](#round-robin-scheduling-algorithm) | [Web Page](https://sgal.self.sugina.cc/oslab/lab1/) | C++ |
-| 2 | [First Fit Algorithm](#first-fit-algorithm) | [Web Page](https://sgal.self.sugina.cc/oslab/lab2/) | PureScript |
+| 1 | [Round-Robin Scheduling Algorithm](#round-robin-scheduling-algorithm) | [Web Page](https://sgalal.github.io/oslab/lab1/) | C++ |
+| 2 | [First Fit Algorithm](#first-fit-algorithm) | [Web Page](https://sgalal.github.io/oslab/lab2/) | PureScript |
 | 3 | [Bitmap](#bitmap) | Console | C++ |
-| 4 | [Banker's Algorithm](#bankers-algorithm) | [Web Page](https://sgal.self.sugina.cc/oslab/lab4/) | PureScript |
+| 4 | [Banker's Algorithm](#bankers-algorithm) | [Web Page](https://sgalal.github.io/oslab/lab4/) | PureScript |
 | 5 | [Page Table Illustration](#page-table-illustration) | Console | Python |
 
 **LICENSE:** GNU General Public License v3.0
