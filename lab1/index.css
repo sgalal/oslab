@@ -1,3 +1,7 @@
+body {
+	text-align: center;
+}
+
 .div_up, .div_bottom {
 	align-items: stretch;
 	display: flex;

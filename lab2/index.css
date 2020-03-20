@@ -1,3 +1,7 @@
+body {
+	text-align: center;
+}
+
 input[type="button"].btn_2 {
 	background-color: #d8e1fe;
 }
